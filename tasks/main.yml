@@ -14,7 +14,7 @@
         - 'main.yml'
       paths: '../vars'
 
-- include: "{{ ansible_os_family}}.yml"
+- include_tasks: "{{ ansible_os_family}}.yml"
 
 - name: main | install kibana
   package:
@@ -31,7 +31,7 @@
   notify:
     - "restart kibana"
 
-- include: firewall.yml
+- include_tasks: firewall.yml
   when: firewall_setup == True
 
 - name: main | Start and enable service
@@ -40,7 +40,7 @@
     state:   started
     enabled: yes
 
-- include: dashboard.yml
+- include_tasks: dashboard.yml
   when: kibana_deploy_dashboard
   tags:
     - dashboard

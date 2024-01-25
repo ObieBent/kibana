@@ -21,7 +21,7 @@
   delegate_to: "{{ inventory_hostname }}"
 
 - name: dashboard | Import dashboards
-  include: "dashboard-import-{{ kibana_major_version }}.yml dashbrd={{ db }}"
+  include_tasks: "dashboard-import-{{ kibana_major_version }}.yml dashbrd={{ db }}"
   with_items:
     - freeradius
     - http
